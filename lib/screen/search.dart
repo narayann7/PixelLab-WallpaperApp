@@ -96,6 +96,12 @@ class _SearchwallpaperState extends State<Searchwallpaper> {
                     onSubmitted: (String wa) {
                       setState(() {
                         loading = 0;
+
+                        if (querywalli.text == "")
+                          searched = false;
+                        else
+                          searched = true;
+
                         if (widget.starting != "") {
                           widget.starting = "";
                         }
@@ -103,7 +109,7 @@ class _SearchwallpaperState extends State<Searchwallpaper> {
                         wallpapers.clear();
                         res = 1;
                         getWalli(querywalli.text);
-                        searched = true;
+
                         initState();
                       });
                     },
@@ -121,13 +127,16 @@ class _SearchwallpaperState extends State<Searchwallpaper> {
                     onTap: () {
                       setState(() {
                         loading = 0;
+                        if (querywalli.text == "")
+                          searched = false;
+                        else
+                          searched = true;
                         if (widget.starting != "") {
                           widget.starting = "";
                         }
                         keysearch = querywalli.text;
                         wallpapers.clear();
                         getWalli(querywalli.text);
-                        searched = true;
                         initState();
                       });
                     },
