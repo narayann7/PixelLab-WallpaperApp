@@ -1,3 +1,5 @@
+import 'dart:ui';
+
 import 'package:flutter/material.dart';
 import 'package:wallx/data/data.dart';
 import 'package:wallx/screen/search.dart';
@@ -31,15 +33,16 @@ class _CatogoriesState extends State<Catogories> {
 }
 
 class Catlist extends StatelessWidget {
-  final String name, url;
-  Catlist({@required this.name, @required this.url});
+  final String name;
+  Image im;
+  Catlist({@required this.name, @required this.im});
 
   @override
   Widget build(BuildContext context) {
-    return catoo(context, name, url);
+    return catoo(context, name, im);
   }
 
-  Widget catoo(BuildContext context, String name, String url) {
+  Widget catoo(BuildContext context, String name, Image im) {
     return GestureDetector(
       onTap: () {
         Navigator.of(context).push(MaterialPageRoute(
@@ -71,15 +74,7 @@ class Catlist extends StatelessWidget {
                 height: 200,
                 width: MediaQuery.of(context).size.width,
                 child: ClipRRect(
-                  borderRadius: BorderRadius.circular(20),
-                  child: Container(
-                      child: CachedNetworkImage(
-                          imageUrl: url,
-                          placeholder: (context, url) => Container(
-                                color: Color(0xfff101316),
-                              ),
-                          fit: BoxFit.cover)),
-                ),
+                    borderRadius: BorderRadius.circular(20), child: im),
               ),
             ),
             Padding(
@@ -102,7 +97,7 @@ class Catlist extends StatelessWidget {
               ),
             ),
             Positioned(
-              left: MediaQuery.of(context).size.width - 380,
+              left: 24,
               top: 27,
               child: Container(
                 child: Text(

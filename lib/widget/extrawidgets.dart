@@ -56,13 +56,12 @@ Widget wallPaperdisplay(List<Jsondecode> wallpapersx, BuildContext context) {
                 borderRadius: BorderRadius.circular(18),
                 child: Hero(
                   tag: e.src.potariat,
-                  child: Container(
-                      child: CachedNetworkImage(
-                          imageUrl: e.src.potariat,
-                          placeholder: (context, url) => Container(
-                                color: e.jclolourcode.toColor(),
-                              ),
-                          fit: BoxFit.cover)),
+                  child: CachedNetworkImage(
+                      imageUrl: e.src.potariat,
+                      placeholder: (context, url) => Container(
+                            color: e.jclolourcode.toColor(),
+                          ),
+                      fit: BoxFit.cover),
                 ),
               ),
             ),

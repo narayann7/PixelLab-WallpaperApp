@@ -18,8 +18,9 @@ class Home extends StatefulWidget {
 class _HomeState extends State<Home> {
   // ignore: deprecated_member_use
   final List<Jsondecode> wallpapers = new List();
-  ScrollController _scrollController = new ScrollController();
   int noOfImageToLoad = 80, res = 1;
+
+  int loading = 1;
 
   getWalli() async {
     var url =
@@ -33,7 +34,9 @@ class _HomeState extends State<Home> {
       wallcontent = Jsondecode.fromMap(element);
       wallpapers.add(wallcontent);
     });
-    setState(() {});
+    setState(() {
+      loading = 0;
+    });
   }
 
   void yo() {
@@ -47,19 +50,13 @@ class _HomeState extends State<Home> {
   void initState() {
     super.initState();
     getWalli();
-    _scrollController.addListener(() {
-      if (_scrollController.position.pixels ==
-          _scrollController.position.maxScrollExtent) {
-        yo();
-      }
-    });
   }
 
   @override
   Widget build(BuildContext context) {
     final _kTabPages = <Widget>[
       Center(
-        child: wallPaperdisplay(wallpapers, context),
+        child: mainxx(context),
       ),
       Center(child: Catogories()),
     ];
@@ -121,8 +118,6 @@ class _HomeState extends State<Home> {
                         ),
                         context: context,
                         builder: (BuildContext context) {
-                          // we set up a container inside which
-                          // we create center column and display text
                           return BackdropFilter(
                             filter:
                                 ImageFilter.blur(sigmaX: 10.0, sigmaY: 10.0),
@@ -257,5 +252,13 @@ class _HomeState extends State<Home> {
         ),
       ),
     );
+  }
+
+  Widget mainxx(BuildContext context) {
+    return loading == 1
+        ? Container(
+            child: CircularProgressIndicator(),
+          )
+        : wallPaperdisplay(wallpapers, context);
   }
 }

@@ -75,57 +75,96 @@ class Listcato extends StatelessWidget {
   Widget build(BuildContext context) {
     return Column(children: [
       Catlist(
-          name: "City",
-          url:
-              "https://images.pexels.com/photos/219692/pexels-photo-219692.jpeg?cs=srgb&dl=pexels-pixabay-219692.jpg&fm=jpg"),
+        name: "City",
+        im: Image(
+          fit: BoxFit.cover,
+          image: AssetImage("images/city.jpg"),
+        ),
+      ),
       Catlist(
-          name: "Forest",
-          url:
-              "https://images.pexels.com/photos/2876511/pexels-photo-2876511.jpeg?auto=compress&cs=tinysrgb&dpr=3&h=750&w=1260"),
+        name: "Forest",
+        im: Image(
+          fit: BoxFit.cover,
+          image: AssetImage("images/forest.jpg"),
+        ),
+      ),
       Catlist(
-          name: "Ocean",
-          url:
-              "https://images.pexels.com/photos/1330218/pexels-photo-1330218.jpeg?auto=compress&cs=tinysrgb&h=750&w=1260"),
+        name: "Ocean",
+        im: Image(
+          fit: BoxFit.cover,
+          image: AssetImage("images/ocean.jpeg"),
+        ),
+      ),
       Catlist(
-          name: "Minimalist",
-          url:
-              "https://images.pexels.com/photos/4466240/pexels-photo-4466240.jpeg?auto=compress&cs=tinysrgb&h=750&w=1260"),
+        name: "Minimalist",
+        im: Image(
+          fit: BoxFit.cover,
+          image: AssetImage("images/min.webp"),
+        ),
+      ),
+      //   Catlist(
+      //     name: "Mist",
+      //     im: Image(
+      //       fit: BoxFit.cover,
+      //       image: AssetImage("mist.jpeg"),
+      //     ),
+      //   ),
       Catlist(
-          name: "Mist",
-          url:
-              "https://images.pexels.com/photos/1367192/pexels-photo-1367192.jpeg?auto=compress&cs=tinysrgb&h=750&w=1260"),
+        name: "Coding",
+        im: Image(
+          fit: BoxFit.cover,
+          image: AssetImage("images/code.jpg"),
+        ),
+      ),
       Catlist(
-          name: "Coding",
-          url:
-              "https://images.pexels.com/photos/247791/pexels-photo-247791.png?cs=srgb&dl=pexels-pixabay-247791.jpg&fm=jpg"),
+        name: "Black",
+        im: Image(
+          fit: BoxFit.cover,
+          image: AssetImage("images/black.jpg"),
+        ),
+      ),
       Catlist(
-          name: "Black",
-          url:
-              "https://images.pexels.com/photos/1679719/pexels-photo-1679719.jpeg?cs=srgb&dl=pexels-markus-spiske-1679719.jpg&fm=jpg"),
+        name: "Love",
+        im: Image(
+          fit: BoxFit.cover,
+          image: AssetImage("images/love.webp"),
+        ),
+      ),
       Catlist(
-          name: "Love",
-          url:
-              "https://images.pexels.com/photos/1378849/pexels-photo-1378849.jpeg?cs=srgb&dl=pexels-helena-lopes-1378849.jpg&fm=jpg"),
+        name: "Abstract",
+        im: Image(
+          fit: BoxFit.cover,
+          image: AssetImage("images/abst.jpg"),
+        ),
+      ),
       Catlist(
-          name: "Abstract",
-          url:
-              "https://images.pexels.com/photos/1981468/pexels-photo-1981468.jpeg?cs=srgb&dl=pexels-steve-johnson-1981468.jpg&fm=jpg"),
+        name: "Art",
+        im: Image(
+          fit: BoxFit.cover,
+          image: AssetImage("images/art.jpg"),
+        ),
+      ),
       Catlist(
-          name: "Art",
-          url:
-              "https://images.pexels.com/photos/1070534/pexels-photo-1070534.jpeg?cs=srgb&dl=pexels-steve-johnson-1070534.jpg&fm=jpg"),
+        name: "Food",
+        im: Image(
+          fit: BoxFit.cover,
+          image: AssetImage("images/food.webp"),
+        ),
+      ),
       Catlist(
-          name: "Food",
-          url:
-              "https://images.pexels.com/photos/1279330/pexels-photo-1279330.jpeg?auto=compress&cs=tinysrgb&dpr=2&h=650&w=940"),
+        name: "Space",
+        im: Image(
+          fit: BoxFit.cover,
+          image: AssetImage("images/night.jpeg"),
+        ),
+      ),
       Catlist(
-          name: "Space",
-          url:
-              "https://images.pexels.com/photos/2538107/pexels-photo-2538107.jpeg?auto=compress&cs=tinysrgb&h=750&w=1260"),
-      Catlist(
-          name: "Dark",
-          url:
-              "https://images.pexels.com/photos/753994/pexels-photo-753994.jpeg?auto=compress&cs=tinysrgb&dpr=2&h=650&w=940"),
+        name: "Dark",
+        im: Image(
+          fit: BoxFit.cover,
+          image: AssetImage("images/dark.jpeg"),
+        ),
+      ),
     ]);
   }
 }
