@@ -1,14 +1,15 @@
-import 'dart:typed_data';
+import 'dart:io';
+
 import 'package:flutter/material.dart';
 import 'package:cached_network_image/cached_network_image.dart';
-import 'package:image_gallery_saver/image_gallery_saver.dart';
 import 'package:permission_handler/permission_handler.dart';
 import 'package:dio/dio.dart';
 import 'package:wallx/data/data.dart';
 import 'package:fluttertoast/fluttertoast.dart';
+import 'package:path_provider/path_provider.dart';
 
-final _showToast = () => Fluttertoast.showToast(
-    msg: 'wallpaper saved',
+final _showToast = (String message) => Fluttertoast.showToast(
+    msg: message,
     toastLength: Toast.LENGTH_SHORT,
     backgroundColor: d.withOpacity(0.8));
 
@@ -23,6 +24,51 @@ class Openimage extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
+    final Dio dio = Dio();
+
+    String Filenamemethod() {
+      List<String> spliting = download.split("/");
+      return spliting[spliting.length - 1];
+    }
+
+    Future<bool> requestPremission(Permission permission) async {
+      if (await permission.isGranted)
+        return true;
+      else {
+        var result = await permission.request();
+        if (result == PermissionStatus.granted)
+          return true;
+        else
+          return false;
+      }
+    }
+
+    Future<bool> save(String url, String filename) async {
+      Directory directory;
+      try {
+        if (await requestPremission(Permission.storage)) {
+          directory = await getExternalStorageDirectory();
+          directory = Directory("/storage/emulated/0/Download/");
+          print(directory);
+        } else
+          return false;
+
+        if (!await directory.exists()) directory.createSync(recursive: true);
+
+        if (await directory.exists()) {
+          File savefile = File(directory.path + filename);
+          print(directory.path);
+          await dio.download(url, savefile.path);
+        }
+        _showToast("wallpaper downloaded");
+
+        return true;
+      } catch (e) {
+        _showToast("downloaded failed");
+      }
+      return false;
+    }
+
     return Scaffold(
       floatingActionButtonLocation: FloatingActionButtonLocation.centerDocked,
       floatingActionButton: Padding(
@@ -31,9 +77,11 @@ class Openimage extends StatelessWidget {
           backgroundColor: g4.withOpacity(0.85),
           icon: Icon(Icons.file_download),
           label: Text("download"),
-          onPressed: () {
-            _save();
-            Navigator.pop(context);
+          onPressed: () async {
+            print(Filenamemethod());
+            String name = Filenamemethod();
+            await save(download, name);
+            // Navigator.pop(context);
           },
         ),
       ),
@@ -52,27 +100,5 @@ class Openimage extends StatelessWidget {
         ),
       ),
     );
-  }
-
-  _save() async {
-    await _askPermission();
-    var response = await Dio()
-        .get(download, options: Options(responseType: ResponseType.bytes));
-    final result =
-        await ImageGallerySaver.saveImage(Uint8List.fromList(response.data));
-    _showToast();
-  }
-
-  _askPermission() async {
-    var status = await Permission.storage.status;
-    if (status.isUndetermined) {
-      // You can request multiple permissions at once.
-      Map<Permission, PermissionStatus> statuses = await [
-        Permission.storage,
-        Permission.camera,
-      ].request();
-      print(statuses[
-          Permission.storage]); // it should print PermissionStatus.granted
-    }
   }
 }

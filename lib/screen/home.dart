@@ -1,7 +1,6 @@
 import 'dart:convert';
 import 'dart:ui';
 import 'package:flutter/material.dart';
-import 'package:url_launcher/url_launcher.dart';
 import 'package:wallx/data/data.dart';
 import 'package:wallx/screen/catogories.dart';
 import 'package:http/http.dart' as http;

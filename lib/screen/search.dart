@@ -4,6 +4,7 @@ import 'package:wallx/data/data.dart';
 import 'package:http/http.dart' as http;
 import 'package:wallx/widget/extrawidgets.dart';
 
+// ignore: must_be_immutable
 class Searchwallpaper extends StatefulWidget {
   String starting = "";
   Searchwallpaper({Key key, @required this.starting}) : super(key: key);
@@ -62,6 +63,7 @@ class _SearchwallpaperState extends State<Searchwallpaper> {
       searched = true;
     } else
       getWalli(querywalli.text);
+    print("helloo bitch");
   }
 
   @override
@@ -109,8 +111,6 @@ class _SearchwallpaperState extends State<Searchwallpaper> {
                         wallpapers.clear();
                         res = 1;
                         getWalli(querywalli.text);
-
-                        initState();
                       });
                     },
                     decoration: InputDecoration(

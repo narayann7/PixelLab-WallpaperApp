@@ -3,7 +3,6 @@ import 'dart:ui';
 import 'package:flutter/material.dart';
 import 'package:wallx/data/data.dart';
 import 'package:wallx/screen/search.dart';
-import 'package:cached_network_image/cached_network_image.dart';
 
 class Cato {
   String types;
@@ -32,6 +31,7 @@ class _CatogoriesState extends State<Catogories> {
   }
 }
 
+// ignore: must_be_immutable
 class Catlist extends StatelessWidget {
   final String name;
   Image im;
